@@ -36,9 +36,10 @@ export const PROJECTS: Project[] = [
   {
     id: 'prsys',
     number: '04',
-    title: 'Payroll Integrated System',
+    title: 'PRSys',
     category: 'C# / .NET / SQL',
     description: 'A robust financial ecosystem engineered for automated salary processing and high-precision enterprise data management.',
+    imageUrl: `${base}assets/images/PRSys.png`,
     aspectRatio: 'standard',
     darkVariant: true
   }

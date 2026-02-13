@@ -24,9 +24,18 @@ const props = withDefaults(defineProps<Props>(), {
       ]"
     >
       <!-- Dark variant: text-based focal point -->
-      <div v-if="props.project.darkVariant" class="text-center px-8">
-        <div class="text-accent text-xs uppercase tracking-[0.4em] font-bold mb-3">{{ props.project.category }}</div>
-        <div class="text-white text-2xl sm:text-4xl font-display font-light tracking-tight">{{ props.project.title }}</div>
+      <!-- Dark variant: centered logo on black -->
+      <div v-if="props.project.darkVariant" class="flex items-center justify-center h-full px-8">
+        <img 
+          v-if="props.project.imageUrl"
+          :alt="props.project.title" 
+          class="max-h-[60%] max-w-[80%] object-contain transition-all duration-400 ease-out group-hover:scale-105" 
+          :src="props.project.imageUrl" 
+        />
+        <div v-else class="text-center">
+          <div class="text-accent text-xs uppercase tracking-[0.4em] font-bold mb-3">{{ props.project.category }}</div>
+          <div class="text-white text-2xl sm:text-4xl font-display font-light tracking-tight">{{ props.project.title }}</div>
+        </div>
       </div>
       <!-- Standard image card -->
       <template v-else>
