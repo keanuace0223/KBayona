@@ -263,7 +263,7 @@ const toggleTheme = () => {
         <div class="flex whitespace-nowrap animate-scroll">
           <div class="flex items-center gap-10 sm:gap-20 px-5 sm:px-10">
             <div v-for="tech in TECH_STACKS" :key="tech.name" class="flex items-center gap-4 group/item cursor-default" :title="tech.name">
-              <img v-if="tech.logo" class="w-8 h-8 opacity-70 group-hover/item:opacity-100 transition-opacity duration-300" :src="tech.logo" :alt="tech.name" />
+              <img v-if="tech.logo" class="w-8 h-8 opacity-70 group-hover/item:opacity-100 transition-all duration-300 dark:invert" :src="tech.logo" :alt="tech.name" />
               <span class="text-xs uppercase tracking-[0.4em] font-bold text-stone-400 dark:text-stone-500 group-hover/item:text-accent transition-colors duration-300">
                 {{ tech.name }}
               </span>
@@ -272,7 +272,7 @@ const toggleTheme = () => {
           <!-- Duplicate for seamless loop -->
           <div class="flex items-center gap-10 sm:gap-20 px-5 sm:px-10" aria-hidden="true">
             <div v-for="tech in TECH_STACKS" :key="tech.name + '-clone'" class="flex items-center gap-4 group/item cursor-default" :title="tech.name">
-              <img v-if="tech.logo" class="w-8 h-8 opacity-70 group-hover/item:opacity-100 transition-opacity duration-300" :src="tech.logo" :alt="tech.name" />
+              <img v-if="tech.logo" class="w-8 h-8 opacity-70 group-hover/item:opacity-100 transition-all duration-300 dark:invert" :src="tech.logo" :alt="tech.name" />
               <span class="text-xs uppercase tracking-[0.4em] font-bold text-stone-400 dark:text-stone-500 group-hover/item:text-accent transition-colors duration-300">
                 {{ tech.name }}
               </span>
