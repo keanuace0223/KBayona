@@ -367,7 +367,7 @@ const toggleTheme = () => {
 
             <!-- Resume Download -->
             <a 
-              href="/resume.pdf" 
+              :href="`${base}resume.pdf`" 
               target="_blank"
               class="inline-flex items-center gap-2 bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold hover:bg-accent/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-accent/20"
             >
