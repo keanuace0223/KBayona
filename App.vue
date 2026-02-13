@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, watch } from 'vue';
 import { animate, stagger, inView } from 'motion';
-import { Sun, Moon, Menu, X, Github, Mail, Terminal as TerminalIcon, ArrowUpRight } from 'lucide-vue-next';
+import { Sun, Moon, Menu, X, Github, Mail, Terminal as TerminalIcon, ArrowUpRight, Download, GraduationCap, User, Linkedin } from 'lucide-vue-next';
 import ProjectCard from './components/ProjectCard.vue';
 import ExperienceItem from './components/ExperienceItem.vue';
 import TerminalOverlay from './components/TerminalOverlay.vue';
@@ -291,23 +291,22 @@ const toggleTheme = () => {
         <div class="grid grid-cols-12 gap-y-16 md:gap-y-48 gap-x-0 md:gap-x-12 project-card-container">
           <!-- Project 1 -->
           <div class="col-span-12 md:col-span-7 project-card-reveal opacity-0">
-            <ProjectCard 
-              :project="PROJECTS[0]" 
-            />
+            <ProjectCard :project="PROJECTS[0]" />
           </div>
           
           <!-- Project 2 -->
           <div class="col-span-12 md:col-start-6 md:col-span-7 project-card-reveal opacity-0">
-            <ProjectCard 
-              :project="PROJECTS[1]" 
-            />
+            <ProjectCard :project="PROJECTS[1]" />
           </div>
           
           <!-- Project 3 -->
           <div class="col-span-12 md:col-span-6 project-card-reveal opacity-0">
-            <ProjectCard 
-              :project="PROJECTS[2]" 
-            />
+            <ProjectCard :project="PROJECTS[2]" />
+          </div>
+
+          <!-- Project 4 - PRSys Dark Variant -->
+          <div class="col-span-12 md:col-start-5 md:col-span-8 project-card-reveal opacity-0">
+            <ProjectCard :project="PROJECTS[3]" />
           </div>
         </div>
       </section>
@@ -331,14 +330,61 @@ const toggleTheme = () => {
         </div>
       </section>
 
+      <!-- About Section -->
+      <section class="py-16 md:py-32" id="about">
+        <div class="grid grid-cols-12 gap-8 md:gap-12">
+          <div class="col-span-12 lg:col-span-5">
+            <div class="lg:sticky lg:top-32">
+              <div class="flex items-center gap-3 mb-6">
+                <div class="w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                  <User :size="20" class="text-accent" />
+                </div>
+                <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-accent">About Me</span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-8">
+                The <span class="italic text-accent font-medium">Person</span><br/>Behind the Code
+              </h2>
+            </div>
+          </div>
+          <div class="col-span-12 lg:col-span-7 space-y-10">
+            <p class="text-base sm:text-lg text-stone-600 dark:text-stone-400 leading-relaxed">
+              My journey began in the fast-paced world of BPO operations, which fueled my transition into architecting high-performance digital systems and scalable software backends. As a 2026 BSIT graduate, I am passionate about the intersection of physical-layer optimization and full-stack logic, ensuring every line of code is supported by robust infrastructure.
+            </p>
+            <p class="text-base sm:text-lg text-stone-600 dark:text-stone-400 leading-relaxed">
+              Whether I'm building custom hardware rigs or deploying enterprise-grade applications, I am dedicated to engineering environments where efficiency and architectural integrity meet.
+            </p>
+
+            <!-- Education -->
+            <div class="border border-stone-200 dark:border-stone-800 rounded-xl p-6 sm:p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <GraduationCap :size="20" class="text-accent" />
+                <span class="text-[10px] uppercase tracking-[0.3em] font-bold text-accent">Education</span>
+              </div>
+              <h3 class="text-xl sm:text-2xl font-light mb-1">Cavite State University — Silang Campus</h3>
+              <p class="text-stone-500 dark:text-stone-400 text-sm font-medium">Bachelor of Science in Information Technology</p>
+              <p class="text-stone-400 dark:text-stone-500 text-xs uppercase tracking-widest mt-1">2022 — 2026</p>
+            </div>
+
+            <!-- Resume Download -->
+            <a 
+              href="/resume.pdf" 
+              target="_blank"
+              class="inline-flex items-center gap-2 bg-accent text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold hover:bg-accent/90 transition-all duration-300 hover:scale-105 shadow-lg shadow-accent/20"
+            >
+              <Download :size="14" /> Download Resume
+            </a>
+          </div>
+        </div>
+      </section>
+
       <!-- Contact Section -->
-      <section class="py-32 md:py-64 flex flex-col items-center text-center contact-reveal opacity-0" id="contact">
-        <h2 class="text-4xl md:text-8xl font-light mb-16 tracking-tight max-w-5xl leading-tight px-4">
+      <section class="py-16 md:py-32 flex flex-col items-center text-center contact-reveal opacity-0" id="contact">
+        <h2 class="text-3xl sm:text-4xl md:text-8xl font-light mb-12 md:mb-16 tracking-tight max-w-5xl leading-tight px-4">
           Open for <span class="italic text-accent">technical</span> consulting &amp; ventures.
         </h2>
         <div class="group relative inline-block">
           <a 
-            class="text-xl md:text-4xl font-display font-light border-b border-stone-300 dark:border-stone-700 pb-4 block hover:text-accent hover:border-accent transition-all duration-500" 
+            class="text-lg sm:text-xl md:text-4xl font-display font-light border-b border-stone-300 dark:border-stone-700 pb-4 block hover:text-accent hover:border-accent transition-all duration-500" 
             href="mailto:keanuacebayona@gmail.com"
           >
             keanuacebayona@gmail.com
@@ -371,6 +417,9 @@ const toggleTheme = () => {
         <div class="flex flex-wrap gap-4 sm:gap-0 sm:space-x-8 md:space-x-12 text-[10px] uppercase tracking-[0.3em] font-bold text-stone-500">
           <a class="hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-1" href="https://github.com/keanuace0223" target="_blank">
             <Github :size="14" /> GitHub
+          </a>
+          <a class="hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-1" href="https://linkedin.com/in/" target="_blank">
+            <Linkedin :size="14" /> LinkedIn
           </a>
           <a class="hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-1" href="mailto:keanuacebayona@gmail.com">
             <Mail :size="14" /> Mail

@@ -9,14 +9,17 @@ export const PROJECTS: Project[] = [
     number: '01',
     title: 'Silang Emergency App',
     category: 'React Native / Supabase / PostgreSQL',
+    description: 'A geolocation-based public safety infrastructure engineered for real-time incident reporting and high-availability emergency response coordination.',
     imageUrl: `${base}assets/images/SilangEmergency.png`,
-    aspectRatio: 'standard'
+    aspectRatio: 'standard',
+    githubUrl: 'https://github.com/keanuace0223/SilangEmergency'
   },
   {
-    id: 'bnd-pro-league',
+    id: 'onepiece-portal',
     number: '02',
     title: 'One Piece Fandom Site',
     category: 'HTML / CSS / Javascript',
+    description: 'A high-performance interactive web portal prioritizing fluid UI transitions and responsive frontend architecture for complex content navigation.',
     imageUrl: `${base}assets/images/Onepiece.png`,
     aspectRatio: 'standard'
   },
@@ -25,8 +28,19 @@ export const PROJECTS: Project[] = [
     number: '03',
     title: 'EmpSys',
     category: 'PHP / MySQL / .NET / Enterprise Systems',
+    description: 'An enterprise resource planning system focused on secure database integrity and optimized backend logic for scalable administrative workflows.',
     imageUrl: `${base}assets/images/EmpSys.png`,
-    aspectRatio: 'standard'
+    aspectRatio: 'standard',
+    githubUrl: 'https://github.com/keanuace0223/EmpSys'
+  },
+  {
+    id: 'prsys',
+    number: '04',
+    title: 'Payroll Integrated System',
+    category: 'C# / .NET / SQL',
+    description: 'A robust financial ecosystem engineered for automated salary processing and high-precision enterprise data management.',
+    aspectRatio: 'standard',
+    darkVariant: true
   }
 ];
 

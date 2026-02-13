@@ -4,8 +4,12 @@ export interface Project {
   number: string;
   title: string;
   category: string;
-  imageUrl: string;
+  description: string;
+  imageUrl?: string;
   aspectRatio: 'standard' | 'tall';
+  githubUrl?: string;
+  liveUrl?: string;
+  darkVariant?: boolean;
 }
 
 export interface Experience {
