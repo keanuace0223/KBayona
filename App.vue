@@ -236,7 +236,7 @@ const toggleTheme = () => {
       <!-- Hero Section -->
       <section class="min-h-screen flex flex-col justify-center pt-20">
         <div class="max-w-6xl w-full">
-          <h1 class="text-4xl sm:text-6xl md:text-8xl lg:text-[9.5rem] font-light leading-[0.9] mb-8 md:mb-12 -ml-1 md:ml-[-0.05em] tracking-tighter">
+          <h1 class="text-[clamp(2.8rem,10vw,9.5rem)] font-light leading-[0.9] mb-8 md:mb-12 -ml-1 md:ml-[-0.05em] tracking-tighter">
             <div class="overflow-hidden py-2 sm:py-4 -my-2 sm:-my-4"><div class="hero-line">Systems Architect</div></div>
             <div class="overflow-hidden py-2 sm:py-4 -my-2 sm:-my-4"><div class="hero-line italic font-medium text-accent">&amp; Full-Stack</div></div>
             <div class="overflow-hidden py-2 sm:py-4 -my-2 sm:-my-4"><div class="hero-line">Software Engineer</div></div>
