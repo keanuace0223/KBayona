@@ -18,16 +18,18 @@ type TechStack = {
   logo?: string;
 };
 
+const base = import.meta.env.BASE_URL;
+
 const TECH_STACKS: TechStack[] = [
-  { name: 'React', logo: '/assets/images/react.svg' },
-  { name: 'Vue.js', logo: '/assets/images/vue.svg' },
-  { name: 'TypeScript', logo: '/assets/images/typescript.svg' },
-  { name: 'Node.js', logo: '/assets/images/node.svg' },
-  { name: 'PHP', logo: '/assets/images/php.svg' },
-  { name: '.NET', logo: '/assets/images/net.svg' },
-  { name: 'PostgreSQL', logo: '/assets/images/postgresql.svg' },
-  { name: 'HTML', logo: '/assets/images/html.svg' },
-  { name: 'CSS', logo: '/assets/images/css.svg' },
+  { name: 'React', logo: `${base}assets/images/react.svg` },
+  { name: 'Vue.js', logo: `${base}assets/images/vue.svg` },
+  { name: 'TypeScript', logo: `${base}assets/images/typescript.svg` },
+  { name: 'Node.js', logo: `${base}assets/images/node.svg` },
+  { name: 'PHP', logo: `${base}assets/images/php.svg` },
+  { name: '.NET', logo: `${base}assets/images/net.svg` },
+  { name: 'PostgreSQL', logo: `${base}assets/images/postgresql.svg` },
+  { name: 'HTML', logo: `${base}assets/images/html.svg` },
+  { name: 'CSS', logo: `${base}assets/images/css.svg` },
   { name: 'React Native' },
   { name: 'Supabase' },
   { name: 'Javascript' }

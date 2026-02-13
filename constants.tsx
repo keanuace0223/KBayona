@@ -1,13 +1,15 @@
 
 import { Project, Experience } from './types';
 
+const base = import.meta.env.BASE_URL;
+
 export const PROJECTS: Project[] = [
   {
     id: 'silang-emergency',
     number: '01',
     title: 'Silang Emergency App',
     category: 'React Native / Supabase / PostgreSQL',
-    imageUrl: '/assets/images/SilangEmergency.png',
+    imageUrl: `${base}assets/images/SilangEmergency.png`,
     aspectRatio: 'standard'
   },
   {
@@ -15,7 +17,7 @@ export const PROJECTS: Project[] = [
     number: '02',
     title: 'One Piece Fandom Site',
     category: 'HTML / CSS / Javascript',
-    imageUrl: '/assets/images/Onepiece.png',
+    imageUrl: `${base}assets/images/Onepiece.png`,
     aspectRatio: 'standard'
   },
   {
@@ -23,7 +25,7 @@ export const PROJECTS: Project[] = [
     number: '03',
     title: 'EmpSys',
     category: 'PHP / MySQL / .NET / Enterprise Systems',
-    imageUrl: '/assets/images/EmpSys.png',
+    imageUrl: `${base}assets/images/EmpSys.png`,
     aspectRatio: 'standard'
   }
 ];
