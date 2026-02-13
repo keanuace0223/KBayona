@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
             {{ props.project.category }}
           </p>
         </div>
-        <h3 class="text-3xl font-light group-hover:text-accent transition-colors duration-300">
+        <h3 class="text-xl sm:text-3xl font-light group-hover:text-accent transition-colors duration-300">
           {{ props.project.title }}
         </h3>
       </div>
