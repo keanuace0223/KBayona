@@ -6,7 +6,7 @@ const emit = defineEmits(['close']);
 
 const input = ref('');
 const history = ref<string[]>([
-  'Architect OS v1.1.0 initialized.',
+  'KBayona Terminal initialized.',
   'Type "help" for a list of available commands.',
   ''
 ]);
@@ -32,7 +32,7 @@ const handleCommand = () => {
       response = 'Available commands: about, skills, contact, clear, exit, whoami';
       break;
     case 'whoami':
-      response = 'Technical Director & Systems Architect';
+      response = 'Systems Architect & Full-Stack Software Engineer';
       break;
     case 'about':
       response = 'Bridging hardware and software ecosystems with performance-first mindset.';
@@ -41,7 +41,7 @@ const handleCommand = () => {
       response = 'Full-Stack, Infrastructure, Hardware Optimization, Broadcast Systems.';
       break;
     case 'contact':
-      response = 'Email: systems@architect.dev';
+      response = 'Email: keanuacebayona@gmail.com | GitHub: github.com/keanuace0223';
       break;
     case 'clear':
       history.value = [];
@@ -79,7 +79,7 @@ const handleCommand = () => {
           {{ line }}
         </div>
         <form @submit.prevent="handleCommand" class="flex items-center gap-2">
-          <span class="text-accent">guest@architect:~$</span>
+          <span class="text-accent">guest@kbayona:~$</span>
           <input 
             autofocus
             class="bg-transparent border-none outline-none focus:ring-0 flex-1 text-white"

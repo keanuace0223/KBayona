@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Technical Director & Systems Architect | Portfolio</title>
+    <meta name="description" content="Keanu Ace Bayona — Systems Architect & Full-Stack Software Engineer. Portfolio showcasing web, mobile, and enterprise projects.">
+    <title>Keanu Ace Bayona | Portfolio</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
@@ -12,6 +12,15 @@
             darkMode: "class",
             theme: {
                 extend: {
+                    animation: {
+                        'scroll': 'scroll 30s linear infinite',
+                    },
+                    keyframes: {
+                        scroll: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    },
                     colors: {
                         "primary": "#201f1f",
                         "accent": "#02BC9B",
@@ -53,8 +62,44 @@
         ::-webkit-scrollbar-thumb {
             @apply bg-stone-300 dark:bg-stone-700 rounded-full;
         }
+
+        /* Mobile Menu Transitions */
+        .mobile-menu-enter-active,
+        .mobile-menu-leave-active {
+            transition: opacity 0.3s ease;
+        }
+        .mobile-menu-enter-active > div:last-child,
+        .mobile-menu-leave-active > div:last-child {
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu-enter-from,
+        .mobile-menu-leave-to {
+            opacity: 0;
+        }
+        .mobile-menu-enter-from > div:last-child {
+            transform: translateX(100%);
+        }
+        .mobile-menu-leave-to > div:last-child {
+            transform: translateX(100%);
+        }
+
+        /* Icon swap transition */
+        .icon-swap-enter-active,
+        .icon-swap-leave-active {
+            transition: all 0.15s ease;
+        }
+        .icon-swap-enter-from {
+            opacity: 0;
+            transform: rotate(90deg) scale(0.8);
+        }
+        .icon-swap-leave-to {
+            opacity: 0;
+            transform: rotate(-90deg) scale(0.8);
+        }
     </style>
+</head>
+<body>
     <div id="root"></div>
-<script type="module" src="/main.ts"></script>
+    <script type="module" src="/main.ts"></script>
 </body>
 </html>

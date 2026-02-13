@@ -21,15 +21,18 @@ const props = withDefaults(defineProps<Props>(), {
     >
       <img 
         :alt="props.project.title" 
-        class="w-full h-full object-cover grayscale transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105" 
+        class="w-full h-full object-cover transition-all duration-400 ease-out group-hover:scale-105" 
         :src="props.project.imageUrl" 
       />
-      <div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      <div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
     </div>
     <div class="flex justify-between items-start">
       <div class="max-w-[80%]">
         <div class="flex items-center gap-2 mb-2">
-          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          <div class="relative flex items-center justify-center w-2 h-2">
+            <div class="absolute inset-0 rounded-full bg-accent animate-ping opacity-75"></div>
+            <div class="relative w-1.5 h-1.5 rounded-full bg-accent"></div>
+          </div>
           <p class="text-accent text-[10px] uppercase tracking-widest font-bold truncate">
             {{ props.project.category }}
           </p>
@@ -38,7 +41,7 @@ const props = withDefaults(defineProps<Props>(), {
           {{ props.project.title }}
         </h3>
       </div>
-      <span class="font-display italic text-2xl text-stone-300 dark:text-stone-700 group-hover:text-accent/30 transition-colors">
+      <span class="font-display italic text-2xl bg-accent text-white group-hover:bg-accent/90 transition-colors px-2 py-1 rounded">
         {{ props.project.number }}
       </span>
     </div>

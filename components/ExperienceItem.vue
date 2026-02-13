@@ -29,7 +29,7 @@ const iconComponent = computed(() => {
       <span 
         v-for="tag in props.experience.tags" 
         :key="tag"
-        class="px-3 py-1 bg-accent/5 text-accent text-[10px] font-bold uppercase tracking-wider rounded-full border border-accent/20"
+        class="px-3 py-1 bg-accent text-white text-[10px] font-bold uppercase tracking-wider rounded-full border border-accent/20"
       >
         {{ tag }}
       </span>

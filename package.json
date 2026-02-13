@@ -1,5 +1,5 @@
 {
-  "name": "architect-systems-portfolio",
+  "name": "kbayona-portfolio",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -11,6 +11,7 @@
   "dependencies": {
     "lucide-react": "^0.563.0",
     "lucide-vue-next": "^0.563.0",
+    "motion": "^12.34.0",
     "vue": "^3.5.28"
   },
   "devDependencies": {
