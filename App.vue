@@ -313,18 +313,18 @@ const toggleTheme = () => {
 
       <!-- Specialized Experience Section -->
       <section class="py-16 md:py-32" id="experience">
-        <div class="grid grid-cols-12 gap-12">
-          <div class="col-span-12 lg:col-span-4 experience-reveal opacity-0">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          <div class="lg:col-span-4 experience-reveal opacity-0">
             <div class="lg:sticky lg:top-32">
-              <h2 class="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-8">
-                Specialized <br/><span class="italic text-accent font-medium">Technical Experience</span>
+              <h2 class="text-3xl sm:text-4xl md:text-5xl font-light leading-tight mb-4 lg:mb-8">
+                Specialized <br class="hidden sm:block"/><span class="italic text-accent font-medium">Technical Experience</span>
               </h2>
               <p class="text-stone-500 dark:text-stone-400 max-w-sm hidden lg:block">
                 A multi-disciplinary approach to solving architectural challenges across hardware and software boundaries.
               </p>
             </div>
           </div>
-          <div class="col-span-12 lg:col-span-8 space-y-16 experience-reveal opacity-0">
+          <div class="lg:col-span-8 space-y-10 lg:space-y-16 experience-reveal opacity-0">
             <ExperienceItem v-for="exp in EXPERIENCES" :key="exp.id" :experience="exp" />
           </div>
         </div>
