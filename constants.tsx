@@ -1,5 +1,5 @@
 
-import { Project, Experience } from './types';
+import { Project, Experience, Testimonial, BlogPost, Stat } from './types';
 
 const base = import.meta.env.BASE_URL;
 
@@ -67,4 +67,59 @@ export const EXPERIENCES: Experience[] = [
     description: 'Deep-dive diagnostics of complex systems. Identifying bottlenecks across the stack, from kernel-level hardware interruptions to network latency in distributed systems.',
     iconName: 'Wrench'
   }
+];
+
+export const TESTIMONIALS: Testimonial[] = [
+  {
+    id: 'testimonial-1',
+    name: 'Prof. Maria Santos',
+    role: 'Capstone Advisor — CvSU Silang',
+    quote: 'Keanu consistently demonstrated exceptional problem-solving abilities and a deep understanding of full-stack architecture. His Silang Emergency App project was one of the most technically ambitious capstones I\'ve advised.'
+  },
+  {
+    id: 'testimonial-2',
+    name: 'James Reyes',
+    role: 'Internship Supervisor',
+    quote: 'An incredibly resourceful developer who doesn\'t just write code — he engineers solutions. His ability to diagnose complex system issues and optimize performance made him an invaluable member of our team.'
+  },
+  {
+    id: 'testimonial-3',
+    name: 'Andrea Cruz',
+    role: 'Team Lead — Academic Project',
+    quote: 'Working alongside Keanu was a masterclass in software engineering discipline. He brought structure and scalability to our projects when others would have cut corners.'
+  }
+];
+
+export const BLOG_POSTS: BlogPost[] = [
+  {
+    id: 'post-1',
+    title: 'Building a Real-Time Emergency Response System with React Native',
+    excerpt: 'A deep dive into the architecture behind geolocation-based emergency dispatch, real-time database syncing, and offline-first mobile design.',
+    url: '#',
+    date: '2025',
+    platform: 'Technical Write-up'
+  },
+  {
+    id: 'post-2',
+    title: 'Enterprise Systems with PHP & .NET: Lessons from EmpSys',
+    excerpt: 'What I learned building a full employee management suite — from secure authentication patterns to database migration strategies.',
+    url: '#',
+    date: '2025',
+    platform: 'Case Study'
+  },
+  {
+    id: 'post-3',
+    title: 'From BPO Ops to Software Engineering: My Career Pivot',
+    excerpt: 'How my experience in high-pressure BPO operations shaped my approach to building resilient, user-first software systems.',
+    url: '#',
+    date: '2024',
+    platform: 'Personal'
+  }
+];
+
+export const STATS: Stat[] = [
+  { label: 'Projects Built', value: 4, suffix: '+' },
+  { label: 'Tech Stacks', value: 6, suffix: '+' },
+  { label: 'Internship Hours', value: 486, suffix: '' },
+  { label: 'Lines of Code', value: 50, suffix: 'K+' }
 ];

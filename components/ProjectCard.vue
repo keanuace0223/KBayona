@@ -10,6 +10,14 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   className: ""
 });
+
+const emit = defineEmits(['open-lightbox']);
+
+const handleImageClick = () => {
+  if (props.project.imageUrl) {
+    emit('open-lightbox', props.project.imageUrl, props.project.title);
+  }
+};
 </script>
 
 <template>
@@ -22,8 +30,8 @@ const props = withDefaults(defineProps<Props>(), {
           : 'bg-stone-200 dark:bg-stone-800',
         !props.project.darkVariant && (props.project.aspectRatio === 'tall' ? 'aspect-[4/5]' : 'aspect-[16/10]')
       ]"
+      @click="handleImageClick"
     >
-      <!-- Dark variant: text-based focal point -->
       <!-- Dark variant: centered logo on black -->
       <div v-if="props.project.darkVariant" class="flex items-center justify-center h-full px-8">
         <img 
@@ -45,6 +53,12 @@ const props = withDefaults(defineProps<Props>(), {
           :src="props.project.imageUrl" 
         />
         <div class="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+        <!-- Lightbox hint -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <div class="bg-black/50 backdrop-blur-sm text-white text-[10px] uppercase tracking-[0.2em] font-bold px-4 py-2 rounded-full">
+            Click to expand
+          </div>
+        </div>
       </template>
     </div>
     <div class="flex justify-between items-start gap-4">

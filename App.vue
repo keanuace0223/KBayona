@@ -5,13 +5,33 @@ import { Sun, Moon, Menu, X, Github, Mail, Terminal as TerminalIcon, ArrowUpRigh
 import ProjectCard from './components/ProjectCard.vue';
 import ExperienceItem from './components/ExperienceItem.vue';
 import TerminalOverlay from './components/TerminalOverlay.vue';
-import { PROJECTS, EXPERIENCES } from './constants';
+import ScrollProgress from './components/ScrollProgress.vue';
+import ImageLightbox from './components/ImageLightbox.vue';
+
+import StatsCounter from './components/StatsCounter.vue';
+import CursorGlow from './components/CursorGlow.vue';
+import { PROJECTS, EXPERIENCES, STATS } from './constants';
 import { Theme } from './types';
 
 const theme = ref<Theme>('light');
 const isTerminalOpen = ref(false);
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
+const activeSection = ref('');
+
+// Lightbox state
+const lightboxImage = ref<string | null>(null);
+const lightboxAlt = ref('');
+
+const openLightbox = (imageUrl: string, alt: string) => {
+  lightboxImage.value = imageUrl;
+  lightboxAlt.value = alt;
+};
+
+const closeLightbox = () => {
+  lightboxImage.value = null;
+  lightboxAlt.value = '';
+};
 
 type TechStack = {
   name: string;
@@ -35,13 +55,14 @@ const TECH_STACKS: TechStack[] = [
   { name: 'Javascript' }
 ];
 
+const NAV_SECTIONS = ['work', 'experience', 'about', 'contact'];
+
 const handleScroll = () => {
   isScrolled.value = window.scrollY > 20;
 };
 
 const toggleMobileMenu = () => {
   isMobileMenuOpen.value = !isMobileMenuOpen.value;
-  // Prevent body scroll when menu is open
   document.body.style.overflow = isMobileMenuOpen.value ? 'hidden' : '';
 };
 
@@ -50,9 +71,36 @@ const closeMobileMenu = () => {
   document.body.style.overflow = '';
 };
 
+// Keyboard shortcuts
+const handleKeydown = (e: KeyboardEvent) => {
+  // Don't trigger if user is typing in an input
+  const target = e.target as HTMLElement;
+  if (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA') return;
+  
+  if (e.key.toLowerCase() === 't' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    e.preventDefault();
+    isTerminalOpen.value = true;
+  }
+};
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
+  window.addEventListener('keydown', handleKeydown);
   
+  // Active section observer
+  const sectionEls = NAV_SECTIONS.map(id => document.getElementById(id)).filter(Boolean) as HTMLElement[];
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          activeSection.value = entry.target.id;
+        }
+      });
+    },
+    { rootMargin: '-20% 0px -60% 0px' }
+  );
+  sectionEls.forEach(el => observer.observe(el));
+
   // Staggered Hero Reveal
   const heroLines = document.querySelectorAll(".hero-line");
   if (heroLines.length > 0) {
@@ -112,6 +160,8 @@ onMounted(() => {
     );
   });
 
+
+
   // Section Reveal on Scroll — Contact
   inView(".contact-reveal", (element) => {
     animate(
@@ -123,10 +173,24 @@ onMounted(() => {
       } as any
     );
   });
+
+  // Stats counter animation
+  inView(".stats-counter-row", (element) => {
+    animate(
+      element.querySelectorAll(".stat-item") as any,
+      { y: [20, 0], opacity: [0, 1] } as any,
+      {
+        delay: stagger(0.1),
+        duration: 0.5,
+        easing: [0.16, 1, 0.3, 1]
+      } as any
+    );
+  });
 });
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll);
+  window.removeEventListener('keydown', handleKeydown);
   document.body.style.overflow = '';
 });
 
@@ -153,10 +217,22 @@ const scrollToSection = (e: Event, id: string) => {
 const toggleTheme = () => {
   theme.value = theme.value === 'light' ? 'dark' : 'light';
 };
+
+const scrollToTop = () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+const isNavActive = (section: string) => activeSection.value === section;
 </script>
 
 <template>
   <div class="min-h-screen overflow-x-hidden">
+    <!-- Scroll Progress Bar -->
+    <ScrollProgress />
+
+    <!-- Cursor Glow -->
+    <CursorGlow />
+
     <!-- Navigation -->
     <nav :class="[
       'fixed top-0 w-full z-50 transition-all duration-500',
@@ -165,14 +241,18 @@ const toggleTheme = () => {
         : 'py-8 px-6 md:px-12 bg-transparent'
     ]">
       <div class="max-w-[1440px] mx-auto flex justify-between items-center">
-        <a class="text-xl font-display font-bold tracking-tighter flex items-center gap-1 group" href="#">
+        <a 
+          class="text-xl font-display font-bold tracking-tighter flex items-center gap-1 group cursor-pointer" 
+          href="#"
+          @click.prevent="scrollToTop"
+        >
           <span class="text-accent">K</span>Bayona<span class="text-accent group-hover:animate-pulse">.</span>
         </a>
         
         <div class="hidden md:flex space-x-12 text-[10px] uppercase tracking-[0.25em] font-semibold text-stone-500 dark:text-stone-400">
-          <a class="hover:text-accent dark:hover:text-accent transition-colors duration-300" href="#work" @click="scrollToSection($event, 'work')">Works</a>
-          <a class="hover:text-accent dark:hover:text-accent transition-colors duration-300" href="#experience" @click="scrollToSection($event, 'experience')">About</a>
-          <a class="hover:text-accent dark:hover:text-accent transition-colors duration-300" href="#contact" @click="scrollToSection($event, 'contact')">Contact</a>
+          <a :class="['transition-colors duration-300', isNavActive('work') ? 'text-accent' : 'hover:text-accent dark:hover:text-accent']" href="#work" @click="scrollToSection($event, 'work')">Works</a>
+          <a :class="['transition-colors duration-300', isNavActive('experience') ? 'text-accent' : 'hover:text-accent dark:hover:text-accent']" href="#experience" @click="scrollToSection($event, 'experience')">About</a>
+          <a :class="['transition-colors duration-300', isNavActive('contact') ? 'text-accent' : 'hover:text-accent dark:hover:text-accent']" href="#contact" @click="scrollToSection($event, 'contact')">Contact</a>
         </div>
         
         <button class="md:hidden relative z-[110]" @click="toggleMobileMenu" aria-label="Toggle menu">
@@ -281,6 +361,11 @@ const toggleTheme = () => {
         </div>
       </section>
 
+      <!-- Stats Counter -->
+      <section class="py-12 md:py-20">
+        <StatsCounter :stats="STATS" />
+      </section>
+
       <!-- Selected Works Section -->
       <section class="py-16 md:py-32" id="work">
         <div class="flex flex-col md:flex-row justify-between items-baseline mb-12 md:mb-24 border-b border-stone-200 dark:border-stone-800 pb-8 md:pb-12">
@@ -291,22 +376,22 @@ const toggleTheme = () => {
         <div class="grid grid-cols-12 gap-y-16 md:gap-y-48 gap-x-0 md:gap-x-12 project-card-container">
           <!-- Project 1 -->
           <div class="col-span-12 md:col-span-7 project-card-reveal opacity-0">
-            <ProjectCard :project="PROJECTS[0]" />
+            <ProjectCard :project="PROJECTS[0]" @open-lightbox="openLightbox" />
           </div>
           
           <!-- Project 2 -->
           <div class="col-span-12 md:col-start-6 md:col-span-7 project-card-reveal opacity-0">
-            <ProjectCard :project="PROJECTS[1]" />
+            <ProjectCard :project="PROJECTS[1]" @open-lightbox="openLightbox" />
           </div>
           
           <!-- Project 3 -->
           <div class="col-span-12 md:col-span-6 project-card-reveal opacity-0">
-            <ProjectCard :project="PROJECTS[2]" />
+            <ProjectCard :project="PROJECTS[2]" @open-lightbox="openLightbox" />
           </div>
 
           <!-- Project 4 - PRSys Dark Variant -->
           <div class="col-span-12 md:col-start-5 md:col-span-8 project-card-reveal opacity-0">
-            <ProjectCard :project="PROJECTS[3]" />
+            <ProjectCard :project="PROJECTS[3]" @open-lightbox="openLightbox" />
           </div>
         </div>
       </section>
@@ -329,6 +414,8 @@ const toggleTheme = () => {
           </div>
         </div>
       </section>
+
+
 
       <!-- About Section -->
       <section class="py-16 md:py-32" id="about">
@@ -376,6 +463,8 @@ const toggleTheme = () => {
           </div>
         </div>
       </section>
+
+
 
       <!-- Contact Section -->
       <section class="py-16 md:py-32 flex flex-col items-center text-center contact-reveal opacity-0" id="contact">
@@ -432,6 +521,12 @@ const toggleTheme = () => {
           </button>
         </div>
       </div>
+      <!-- Keyboard hint -->
+      <div class="mt-8 pt-6 border-t border-stone-100 dark:border-stone-800/50 text-center">
+        <p class="text-[10px] text-stone-400 dark:text-stone-600 uppercase tracking-[0.2em]">
+          Press <kbd class="px-1.5 py-0.5 bg-stone-100 dark:bg-stone-800 rounded text-[10px] font-mono mx-0.5">T</kbd> to open terminal
+        </p>
+      </div>
     </footer>
 
     <!-- Floating Controls -->
@@ -452,6 +547,14 @@ const toggleTheme = () => {
         <TerminalIcon :size="18" />
       </button>
     </div>
+
+    <!-- Lightbox -->
+    <ImageLightbox 
+      v-if="lightboxImage" 
+      :image-url="lightboxImage" 
+      :alt="lightboxAlt" 
+      @close="closeLightbox" 
+    />
 
     <!-- Terminal Modal -->
     <TerminalOverlay v-if="isTerminalOpen" @close="isTerminalOpen = false" />

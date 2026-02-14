@@ -5,9 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Keanu Ace Bayona — Systems Architect & Full-Stack Software Engineer. Portfolio showcasing web, mobile, and enterprise projects.">
-    <title>Keanu Ace Bayona | Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+        content="Keanu Ace D. Bayona — Systems Architect & Full-Stack Software Engineer. Portfolio showcasing web, mobile, and enterprise projects.">
+    <title>Keanu Ace D. Bayona | Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="/KBayona/favicon.svg">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Keanu Ace D. Bayona — Portfolio">
+    <meta property="og:description"
+        content="Systems Architect & Full-Stack Software Engineer. Building scalable software ecosystems and optimized digital architectures.">
+    <meta property="og:image" content="https://keanuace0223.github.io/KBayona/og-image.svg">
+    <meta property="og:url" content="https://keanuace0223.github.io/KBayona/">
+    <meta property="og:site_name" content="KBayona Portfolio">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Keanu Ace D. Bayona — Portfolio">
+    <meta name="twitter:description" content="Systems Architect & Full-Stack Software Engineer.">
+    <meta name="twitter:image" content="https://keanuace0223.github.io/KBayona/og-image.svg">
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
         href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Inter:wght@300;400;500;600&display=swap"
@@ -100,6 +115,15 @@
         .icon-swap-leave-to {
             opacity: 0;
             transform: rotate(-90deg) scale(0.8);
+        }
+
+        /* Lightbox animation */
+        @keyframes lightbox-in {
+            from { opacity: 0; transform: scale(0.92); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-lightbox-in {
+            animation: lightbox-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
